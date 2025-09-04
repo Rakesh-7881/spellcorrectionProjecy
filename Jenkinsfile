@@ -10,13 +10,13 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'pip install -r requirements.txt'
+                bat 'pip install -r requirements.txt'
             }
         }
 
         stage('Run Tests') {
             steps {
-                sh 'pytest test_spell.py'
+                bat 'pytest test_spell.py'
             }
         }
 
@@ -24,7 +24,7 @@ pipeline {
             steps {
                 echo 'Deploying Spelling Correction Script...'
                 // For demo, just run the script
-                sh 'python spell_corrector.py < input.txt > output.txt || true'
+                bat 'python spell_corrector.py < input.txt > output.txt || true'
             }
         }
     }
