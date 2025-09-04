@@ -25,11 +25,9 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying Spelling Correction Script...'
-                // Run the script with input/output redirection
-                bat '''
-                if exist output.txt del output.txt
-                python spell_corrector.py < input.txt > output.txt
-                '''
+                // Correct Windows redirection
+                bat 'python spell_corrector.py < input.txt > output.txt'
+                archiveArtifacts artifacts: 'output.txt', onlyIfSuccessful: true
             }
         }
     }
